@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Header />
       <Route path='/login' component={Login} />
-      <Route path='/' component={SafeSpace} />
+      <Route exact path='/' component={SafeSpace} />
       <Footer />
     </div>
   );
