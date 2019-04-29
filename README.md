@@ -1,7 +1,7 @@
 # SafeSpace-ReactApp
 
 <p>
-    Safe-Space is an app designed to help those with Mental Health Issues.  The app sends users messages throughout the day with encouraging & positive quotes and reminders.  The premise behind this is that uplifting content and reminders will alter your perspective and help you make it through the day.
+    Safe-Space is an app designed to help those with Mental Health Issues.  The app sends users messages throughout the day with encouraging & positive quotes and reminders.  The premise behind this is that uplifting content and reminders will alter users' perspectives and help them make it through the day.
 </p>
 
 <h3>Functionality: </h3>
