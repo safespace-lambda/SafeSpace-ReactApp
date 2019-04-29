@@ -38,7 +38,7 @@ class Login extends React.Component {
         console.log(this.state.credentials);
        axios.post('https://safespace-bw3.herokuapp.com/api/auth/register',this.state.credentials)
             .then( res => {
-                console.log(res.data.token);
+                console.log(res);
                 localStorage.setItem('token', res.data.token);
             })
             .catch( err => {
@@ -48,8 +48,26 @@ class Login extends React.Component {
 
     login = (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('token');
+        console.log(token);
 
-
+        // const headers = {
+        //     headers : {
+        //         Authorization: `${token}`,
+        //         id: `${id}`
+        //     }
+        // }
+        axios.post('https://safespace-bw3.herokuapp.com/api/auth/login',this.state.credentials)
+             .then( res => {
+                 console.log(res);
+                 this.setState({
+                     id : res.data.user_id
+                 })
+                 this.props.history.push('/');
+             })
+             .catch( err => {
+                 console.log(err);
+             })
     }
 
     render() {
