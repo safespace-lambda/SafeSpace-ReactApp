@@ -8,7 +8,7 @@ class SafeSpace extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='safespace'>
                 This is a SafeSpace
             </div>
         )
