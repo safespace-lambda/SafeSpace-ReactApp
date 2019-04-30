@@ -42,37 +42,37 @@ class SafeSpace extends React.Component {
              .catch(err => console.log(err));
     }
 
-    componentDidUpdate(prevProps,prevState) {
-        if ( prevState.messages !== this.state.messages) {
-            // this.setState({
-            //     messages : this.state.messages.concat(this.state.newMessage)
-            // })
-            const token = localStorage.getItem('token');
-            const id = localStorage.getItem('id');
+    // componentDidUpdate(prevProps,prevState) {
+    //     if ( prevState.messages !== this.state.messages) {
+    //         // this.setState({
+    //         //     messages : this.state.messages.concat(this.state.newMessage)
+    //         // })
+    //         const token = localStorage.getItem('token');
+    //         const id = localStorage.getItem('id');
 
-            const headers = {
-                headers : {
-                    Authorization: `${token}`,
-                    id: `${id}`
-                }
-            };
+    //         const headers = {
+    //             headers : {
+    //                 Authorization: `${token}`,
+    //                 id: `${id}`
+    //             }
+    //         };
 
-            console.log("token in componentdidmount: ", localStorage.getItem('token'));
+    //         console.log("token in componentdidmount: ", localStorage.getItem('token'));
 
-            axios.get(url,headers)
-                .then( res => {
-                    console.log( 'get messages in CDM: ', res);
-                    this.setState({
-                        ...this.state,
-                        messages : res.data
-                    })
-                    })
-                .catch(err => console.log(err));
-        }
-            else {
-                return null;
-            }
-        }
+    //         axios.get(url,headers)
+    //             .then( res => {
+    //                 console.log( 'get messages in CDM: ', res);
+    //                 this.setState({
+    //                     ...this.state,
+    //                     messages : res.data
+    //                 })
+    //                 })
+    //             .catch(err => console.log(err));
+    //     }
+    //         else {
+    //             return null;
+    //         }
+    //     }
 
     addMessage = (message) => {
         console.log('adding message');
@@ -90,16 +90,23 @@ class SafeSpace extends React.Component {
                 // id: `${id}`
             }
         };
+
         const body = {
-            body : `'${this.state.newMessage}'`,
+            body : message,
             scheduled : new Date(),
         }
+
+        console.log('body', body);
        
         axios.post(url,body,headers)
              .then( res => {
                  console.log('new message response: ', res.data);
+                //  const newMessage = {
+                //      ...res.data,
+                //      body : this.state.newMessage
+                //  }
                  this.setState({
-                     messages : this.state.messages.concat(res.data)
+                     messages : [...this.state.messages, res.data]
                  })                   
              })
              .catch( err => console.log('new message error', err))
