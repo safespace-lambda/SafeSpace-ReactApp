@@ -10,7 +10,8 @@ class SafeSpace extends React.Component {
         super(props);
 
         this.state = {
-            message_count : 0
+            message_count : 0,
+            messages : []
         }
     }
 
@@ -41,9 +42,32 @@ class SafeSpace extends React.Component {
 
     addMessage = () => {
         console.log('adding message');
+
+        const token = localStorage.getItem('token');
+        const id = localStorage.getItem('id');
+        const headers = {
+            headers : {
+                Authorization: `${token}`,
+                id: `${id}`
+            }
+        };
+        const body = {
+            body : 'this is my first message.  Cheer Up Mate!',
+            scheduled : new Date(),
+        }
+       
+        axios.post(url,body,headers)
+             .then( res => {
+                 console.log('new message response: ', res.data);
+                 this.setState({
+                     messages : this.state.messages.concat(res.data.body)
+                 })                   
+             })
+             .catch( err => console.log('new message error', err))
+
         this.setState({
-            message_count : this.state.message_count + 1
-        })
+        message_count : this.state.message_count + 1
+        })     
     }
 
     render() {
@@ -57,7 +81,7 @@ class SafeSpace extends React.Component {
                     <Link to={'/login'}><button>Logout</button></Link>
                 </header>
                 <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
-                <div>{messages}</div>
+                <div>{this.state.messages.map( message => <p>{message.body}</p>)}</div>
                 <div className='add' onClick={this.addMessage}> + </div>
             </div>
         )
