@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import AddMessage from './AddMessage';
 
 const url = 'https://safespace-bw3.herokuapp.com/api/messages';
 
@@ -11,7 +12,8 @@ class SafeSpace extends React.Component {
 
         this.state = {
             message_count : 0,
-            messages : []
+            messages : [],
+            add : false
         }
     }
 
@@ -42,6 +44,9 @@ class SafeSpace extends React.Component {
 
     addMessage = () => {
         console.log('adding message');
+        this.setState({
+            add : true
+        })
 
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
@@ -60,7 +65,7 @@ class SafeSpace extends React.Component {
              .then( res => {
                  console.log('new message response: ', res.data);
                  this.setState({
-                     messages : this.state.messages.concat(res.data.body)
+                     messages : this.state.messages.concat(res.data)
                  })                   
              })
              .catch( err => console.log('new message error', err))
@@ -68,6 +73,14 @@ class SafeSpace extends React.Component {
         this.setState({
         message_count : this.state.message_count + 1
         })     
+    }
+
+    edit = () => {
+        console.log('edit has been triggered!');
+        this.setState({
+            add : false
+        }
+        )
     }
 
     render() {
@@ -83,6 +96,9 @@ class SafeSpace extends React.Component {
                 <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
                 <div>{this.state.messages.map( message => <p>{message.body}</p>)}</div>
                 <div className='add' onClick={this.addMessage}> + </div>
+                { this.state.add && <AddMessage edit={this.edit}/>}
+                {/* <input type='text' placeholder='add new message' /> */}
+
             </div>
         )
     }
