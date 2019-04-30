@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import AddMessage from './AddMessage';
+import Message from './Message';
+
 
 const url = 'https://safespace-bw3.herokuapp.com/api/messages';
 
@@ -112,14 +114,16 @@ class SafeSpace extends React.Component {
              .catch( err => console.log('new message error', err))
 
         this.setState({
-            add : false
-        })
+            add : false,
+            newMessage : message,
+            message_count : this.state.message_count + 1
+        },()=>{console.log(this.state.newMessage)})
     }
 
     edit = () => {
         console.log('edit has been triggered!');
         this.setState({
-            add : true,
+            add : true
         }
         )
     }
@@ -135,10 +139,10 @@ class SafeSpace extends React.Component {
                     <Link to={'/login'}><button>Logout</button></Link>
                 </header>
                 <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
-                <div>{this.state.messages.map( message => <p>{message.body}</p>)}</div>
+               {/* {this.state.messages.map( message => <p>{message.body}</p>)} */}
+               {this.state.messages.map( message => <Message message={message}/>)}
                 <div className='add' onClick={this.edit}> + </div>
                 { this.state.add && <AddMessage add={this.addMessage}/>}
-                {/* <input type='text' placeholder='add new message' /> */}
 
             </div>
         )
