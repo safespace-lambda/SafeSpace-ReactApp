@@ -60,9 +60,7 @@ class Login extends React.Component {
         axios.post('https://safespace-bw3.herokuapp.com/api/auth/login',this.state.credentials)
              .then( res => {
                  console.log(res);
-                 this.setState({
-                     id : res.data.user_id
-                 })
+                 localStorage.setItem('id', res.data.user_id);
                  this.props.history.push('/');
              })
              .catch( err => {
