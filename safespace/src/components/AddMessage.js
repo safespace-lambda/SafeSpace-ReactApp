@@ -14,7 +14,7 @@ class AddMessage extends React.Component {
     render() {
 
         return (
-            <form onSubmit={this.props.edit}>
+            <form onSubmit={ (e) => {e.preventDefault();  this.props.add(e.target[0].value) } }>
                 <textarea name='message' rows='10' cols='30' placeholder='Enter Inspirational Message Here'/><br/>
                 <button>Submit</button>
             </form>

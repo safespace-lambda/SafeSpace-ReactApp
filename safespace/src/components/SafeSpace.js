@@ -42,22 +42,56 @@ class SafeSpace extends React.Component {
              .catch(err => console.log(err));
     }
 
-    addMessage = () => {
+    componentDidUpdate(prevProps,prevState) {
+        if ( prevState.messages !== this.state.messages) {
+            // this.setState({
+            //     messages : this.state.messages.concat(this.state.newMessage)
+            // })
+            const token = localStorage.getItem('token');
+            const id = localStorage.getItem('id');
+
+            const headers = {
+                headers : {
+                    Authorization: `${token}`,
+                    id: `${id}`
+                }
+            };
+
+            console.log("token in componentdidmount: ", localStorage.getItem('token'));
+
+            axios.get(url,headers)
+                .then( res => {
+                    console.log( 'get messages in CDM: ', res);
+                    this.setState({
+                        ...this.state,
+                        messages : res.data
+                    })
+                    })
+                .catch(err => console.log(err));
+        }
+            else {
+                return null;
+            }
+        }
+
+    addMessage = (message) => {
         console.log('adding message');
+        console.log(message);
         this.setState({
-            add : true
+            newMessage : message,
+            message_count : this.state.message_count + 1
         })
 
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
         const headers = {
             headers : {
-                Authorization: `${token}`,
-                id: `${id}`
+                Authorization: `${token}`
+                // id: `${id}`
             }
         };
         const body = {
-            body : 'this is my first message.  Cheer Up Mate!',
+            body : `'${this.state.newMessage}'`,
             scheduled : new Date(),
         }
        
@@ -71,14 +105,14 @@ class SafeSpace extends React.Component {
              .catch( err => console.log('new message error', err))
 
         this.setState({
-        message_count : this.state.message_count + 1
-        })     
+            add : false
+        })
     }
 
     edit = () => {
         console.log('edit has been triggered!');
         this.setState({
-            add : false
+            add : true,
         }
         )
     }
@@ -95,8 +129,8 @@ class SafeSpace extends React.Component {
                 </header>
                 <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
                 <div>{this.state.messages.map( message => <p>{message.body}</p>)}</div>
-                <div className='add' onClick={this.addMessage}> + </div>
-                { this.state.add && <AddMessage edit={this.edit}/>}
+                <div className='add' onClick={this.edit}> + </div>
+                { this.state.add && <AddMessage add={this.addMessage}/>}
                 {/* <input type='text' placeholder='add new message' /> */}
 
             </div>
