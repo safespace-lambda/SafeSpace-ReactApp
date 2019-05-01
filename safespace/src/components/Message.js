@@ -19,7 +19,7 @@ class Message extends React.Component {
         modFlag : !this.state.modFlag
     })
   }
-//this.props.modify(modifiedMessage);
+  
   render() {
     return (
       <div className='message'>
