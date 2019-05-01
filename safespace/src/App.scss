@@ -1,0 +1,53 @@
+
+
+.App {
+  text-align: center;
+}
+
+.safespace {
+  border: 2rem solid pink;
+  padding: 50px;
+  min-height: 100vh;
+  margin: 2rem;
+}
+
+.message {
+  border: 5px solid pink;
+  margin: 10px;
+}
+
+.scroll {
+  width: 100px;
+}
+
+
+.add {
+  font-size: 5rem;
+
+  &:hover {
+    cursor : pointer;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-footer {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
