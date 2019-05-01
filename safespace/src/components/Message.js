@@ -10,23 +10,24 @@ class Message extends React.Component {
       this.state = {
           modFlag : false
       }
-
   }
 
-  modMsg = (e) => {
+  modMsg = (msg) => {
 
-    console.log(e);
+    console.log(msg, 'new message txt');
+    console.log(this.props.message, 'original message in safespace state');
     console.log('modMsg has been triggered!');
 
     this.setState({
         modFlag : true
     })
 
-    const modMsg = {
-        ...this.props.message
+    const modifiedMessage = {
+        ...this.props.message,
+        body : msg
     }
 
-    this.props.modify(modMsg);
+    this.props.modify(modifiedMessage);
   }
 
   render() {
@@ -36,7 +37,7 @@ class Message extends React.Component {
         <p>{this.props.message.body}</p>
         <button onClick={this.modMsg}>Modify</button>
         <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
-        {this.state.modFlag && <ModifyMessage/>}
+        {this.state.modFlag && <ModifyMessage modMsg={this.modMsg}/>}
       </div>
     )
   }

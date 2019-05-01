@@ -137,8 +137,7 @@ class SafeSpace extends React.Component {
     modify = (message) => {
         console.log('modify has been triggered');
         console.log(message, ' this is the message object passed into the modify method');
-        //combo of post and delete
-        // axios.put(url,body,headers)
+        
         const base_url = 'https://safespace-bw3.herokuapp.com/api/messages';
         const headers = {
             headers : {
@@ -147,23 +146,31 @@ class SafeSpace extends React.Component {
             }
         }
 
-        
-
         axios.put(`${base_url}/${message.id}`,message,headers)
-             .then( res => console.log('modify put request',res))
+             .then( res => { 
+                 console.log(res.data, 'response from the put request'); 
+                 console.log(this.state.messages, 'this.state.messages');
+                 const messages = this.state.messages.map( msg => {
+                    if (msg.id === res.data.id) {
+                        return res.data
+                    } else {
+                        return msg
+                    }
+                });
+
+                this.setState({messages : messages});
+            })
              .catch( err => console.log('put error ', err))
     }
 
-
     render() {
-        
         return (
             <div className='safespace'>
                 <header>
                     <Link to={'/login'}><button>Logout</button></Link>
                 </header>
                 <p>Welcome!  This is your SafeSpace.</p>
-               {this.state.messages.map( message => <Message className='message' 
+               {this.state.messages.map( (message,i) => <Message key={i} className='message' 
                message={message} delete={this.delete} modify={this.modify}/>)}
                 <div className='add' onClick={this.add}> + </div>
                 { this.state.add && <AddMessage add={this.addMessage}/>}
