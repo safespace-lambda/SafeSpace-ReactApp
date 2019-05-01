@@ -12,32 +12,22 @@ class Message extends React.Component {
       }
   }
 
-  modMsg = (msg) => {
-
-    console.log(msg, 'new message txt');
-    console.log(this.props.message, 'original message in safespace state');
-    console.log('modMsg has been triggered!');
+  toggleMod = () => {
+    console.log('toggleMod has been triggered!');
 
     this.setState({
-        modFlag : true
+        modFlag : !this.state.modFlag
     })
-
-    const modifiedMessage = {
-        ...this.props.message,
-        body : msg
-    }
-
-    this.props.modify(modifiedMessage);
   }
-
+//this.props.modify(modifiedMessage);
   render() {
     return (
       <div className='message'>
         <img className='scroll' src={scroll} alt='message_img'/>
         <p>{this.props.message.body}</p>
-        <button onClick={this.modMsg}>Modify</button>
+        <button onClick={this.toggleMod}>Modify</button>
         <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
-        {this.state.modFlag && <ModifyMessage modMsg={this.modMsg}/>}
+        {this.state.modFlag && <ModifyMessage message={this.props.message} modify={this.props.modify} toggleMod={this.toggleMod} />}
       </div>
     )
   }
