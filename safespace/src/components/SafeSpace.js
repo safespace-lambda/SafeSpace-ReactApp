@@ -147,6 +147,8 @@ class SafeSpace extends React.Component {
             }
         }
 
+        
+
         axios.put(`${base_url}/${message.id}`,message,headers)
              .then( res => console.log('modify put request',res))
              .catch( err => console.log('put error ', err))
