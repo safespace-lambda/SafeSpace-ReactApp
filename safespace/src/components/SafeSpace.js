@@ -88,8 +88,8 @@ class SafeSpace extends React.Component {
         const id = localStorage.getItem('id');
         const headers = {
             headers : {
-                Authorization: `${token}`
-                // id: `${id}`
+                Authorization: `${token}`,
+                id: `${id}`
             }
         };
 
@@ -128,6 +128,38 @@ class SafeSpace extends React.Component {
         )
     }
 
+    delete = (message) => {
+        console.log('delete has been triggered');
+        console.log('message ', message);
+        const base_url = 'https://safespace-bw3.herokuapp.com/api/messages'
+
+        const headers = {
+            headers : {
+                Authorization : localStorage.getItem('token'),
+                id : message.id
+            }
+        }
+        console.log(headers, 'headers');
+        
+        axios.delete(`${base_url}/${message.id}`,headers)
+             .then( res => {
+                 console.log('delete response', res);
+                 //if res.status = 204 
+                 //
+                 
+             })
+             .catch( err => {
+                 console.log('delete error' , err);
+             })
+    }
+
+    modify = (mesage) => {
+        console.log('modify has been triggered');
+        //combo of post and delete
+        // axios.put(url,body,headers)
+    }
+
+
     render() {
         let messages = [];
         for (let i=0; i < this.state.messages; i++) {
@@ -140,7 +172,8 @@ class SafeSpace extends React.Component {
                 </header>
                 <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
                {/* {this.state.messages.map( message => <p>{message.body}</p>)} */}
-               {this.state.messages.map( message => <Message message={message}/>)}
+               {this.state.messages.map( message => <Message className='message' 
+               message={message} delete={this.delete} modify={this.modify}/>)}
                 <div className='add' onClick={this.edit}> + </div>
                 { this.state.add && <AddMessage add={this.addMessage}/>}
 
