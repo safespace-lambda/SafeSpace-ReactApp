@@ -49,13 +49,6 @@ class Login extends React.Component {
     login = (e) => {
         e.preventDefault();
 
-        // const headers = {
-        //     headers : {
-        //         Authorization: `${token}`,
-        //         id: `${id}`
-        //     }
-        // }
-        
         axios.post('https://safespace-bw3.herokuapp.com/api/auth/login',this.state.credentials)
              .then( res => {
                  console.log('login post response: ', res);

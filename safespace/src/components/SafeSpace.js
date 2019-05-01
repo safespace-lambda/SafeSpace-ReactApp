@@ -38,51 +38,25 @@ class SafeSpace extends React.Component {
                  console.log( 'get messages in CDM: ', res);
                  this.setState({
                      ...this.state,
-                     messages : res.data
+                     messages : res.data,
+                     message_count : res.data.length
                  })
                 })
              .catch(err => console.log(err));
     }
 
-    // componentDidUpdate(prevProps,prevState) {
-    //     if ( prevState.messages !== this.state.messages) {
-    //         // this.setState({
-    //         //     messages : this.state.messages.concat(this.state.newMessage)
-    //         // })
-    //         const token = localStorage.getItem('token');
-    //         const id = localStorage.getItem('id');
-
-    //         const headers = {
-    //             headers : {
-    //                 Authorization: `${token}`,
-    //                 id: `${id}`
-    //             }
-    //         };
-
-    //         console.log("token in componentdidmount: ", localStorage.getItem('token'));
-
-    //         axios.get(url,headers)
-    //             .then( res => {
-    //                 console.log( 'get messages in CDM: ', res);
-    //                 this.setState({
-    //                     ...this.state,
-    //                     messages : res.data
-    //                 })
-    //                 })
-    //             .catch(err => console.log(err));
-    //     }
-    //         else {
-    //             return null;
-    //         }
-    //     }
+    componentDidUpdate(prevState) {
+        console.log(prevState, 'previous state in componentDidUpdate');
+        console.log(this.state.messages, this.state.message_count, 'messages remaining');
+    }
 
     addMessage = (message) => {
         console.log('adding message');
         console.log(message);
-        this.setState({
-            newMessage : message,
-            message_count : this.state.message_count + 1
-        })
+        // this.setState({
+        //     newMessage : message,
+        //     message_count : this.state.message_count + 1
+        // })
 
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
@@ -120,8 +94,8 @@ class SafeSpace extends React.Component {
         },()=>{console.log(this.state.newMessage)})
     }
 
-    edit = () => {
-        console.log('edit has been triggered!');
+    add = () => {
+        console.log('add has been triggered!');
         this.setState({
             add : true
         }
@@ -139,13 +113,20 @@ class SafeSpace extends React.Component {
                 id : message.id
             }
         }
-        console.log(headers, 'headers');
         
+        console.log(headers, 'headers');
+
         axios.delete(`${base_url}/${message.id}`,headers)
              .then( res => {
                  console.log('delete response', res);
                  //if res.status = 204 
                  //
+                 if (res.status === 204) {
+                     this.setState({
+                         messages : this.state.messages.filter( msg => msg !== message),
+                         message_count : this.state.message_count - 1
+                     })
+                 }
                  
              })
              .catch( err => {
@@ -153,28 +134,36 @@ class SafeSpace extends React.Component {
              })
     }
 
-    modify = (mesage) => {
+    modify = (message) => {
         console.log('modify has been triggered');
+        console.log(message, ' this is the message object passed into the modify method');
         //combo of post and delete
         // axios.put(url,body,headers)
+        const base_url = 'https://safespace-bw3.herokuapp.com/api/messages';
+        const headers = {
+            headers : {
+                Authorization : localStorage.getItem('token'),
+                id : message.user_id
+            }
+        }
+
+        axios.put(`${base_url}/${message.id}`,message,headers)
+             .then( res => console.log('modify put request',res))
+             .catch( err => console.log('put error ', err))
     }
 
 
     render() {
-        let messages = [];
-        for (let i=0; i < this.state.messages; i++) {
-            messages.push( <div>this is message {i}</div> ) 
-        }
+        
         return (
             <div className='safespace'>
                 <header>
                     <Link to={'/login'}><button>Logout</button></Link>
                 </header>
-                <p>Welcome!  This is your SafeSpace.  Add a New Message.</p>
-               {/* {this.state.messages.map( message => <p>{message.body}</p>)} */}
+                <p>Welcome!  This is your SafeSpace.</p>
                {this.state.messages.map( message => <Message className='message' 
                message={message} delete={this.delete} modify={this.modify}/>)}
-                <div className='add' onClick={this.edit}> + </div>
+                <div className='add' onClick={this.add}> + </div>
                 { this.state.add && <AddMessage add={this.addMessage}/>}
 
             </div>
