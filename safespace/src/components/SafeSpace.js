@@ -61,7 +61,7 @@ class SafeSpace extends React.Component {
              })
     }
 
-    addMessage = (message) => {
+    addMessage = (message,phone) => {
         console.log('adding message');
         console.log(message);
         // this.setState({
@@ -98,7 +98,7 @@ class SafeSpace extends React.Component {
              })
              .catch( err => console.log('new message error', err))
 
-        this.sms(message,'+14694143109‬','+17577449783');     
+        this.sms(message,'+14694143109‬',phone);     
 
         this.setState({
             add : false,

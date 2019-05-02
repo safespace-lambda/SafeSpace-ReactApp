@@ -13,11 +13,12 @@ class AddMessage extends React.Component {
     msgMaker = (e) => {
         e.preventDefault();
         console.log(e.target[1].value, 'time in msgMaker');
+        console.dir(e.target);
 
         const timeInput = e.target[1].value;
         const pieces = timeInput.split(':');
         const time = new Date(Date.now(), pieces[0],pieces[1]);
-        console.log(null,null,null,'date');
+        const phone = e.target[2].value;
 
         // console.log(time, 'time');
         // console.log('pieces', pieces);
@@ -29,9 +30,8 @@ class AddMessage extends React.Component {
             body : e.target[0].value,
             // scheduled : e.target[1].value
             scheduled : time
-            
         }
-        this.props.add(message);
+        this.props.add(message,phone);
     }
 
     render() {
@@ -39,7 +39,8 @@ class AddMessage extends React.Component {
         return (
             <form onSubmit={ (e) => this.msgMaker(e)}>
                 <textarea id='message' rows='10' cols='30' placeholder='Enter Inspirational Message Here'/><br/>
-                <input type='time' id='time' placeholder='time'/>
+                <input type='time' name='time' placeholder='time'/>
+                <input type='text' name='phone' />
                 <button>Submit</button>
             </form>
         )
