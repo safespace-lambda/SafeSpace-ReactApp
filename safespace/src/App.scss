@@ -7,28 +7,83 @@ $grey : #e6e6e6;
   text-align: center;
 }
 
-.safespace {
-  border: 2rem solid $sand;
-  padding: 50px;
-  min-height: 100vh;
-  margin: 2rem;
+button {
+  background-color: $dark-green;
+  color: $sand;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
 }
 
-.message {
-  border: 5px solid $sand;
-  margin: 10px;
+.safespace {
+  
+  min-height: 100vh;
+
+  header {
+    background-color: $sand;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    small {
+      font-size: .5rem;
+      text-align: right;
+    }
+
+    button {
+      display: inline-block;
+    }
+
+    .btns-safespace {
+      background-color: $sand;
+      margin: 0;
+      padding : 0;
+    }
+
+    .add {
+      display: inline-block;
+      font-size: 5rem;
+      &:hover {
+        cursor : pointer;
+      }
+    }
+
+  }
+  
+  .messages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid $dark-green;
+    
+    .message {
+      border: 5px solid $sand;
+      margin: 10px;
+      padding: 20px;
+      flex-basis: 175px;
+
+      p {
+        margin: 15px;
+      }
+
+      
+    }
+
+  }
+
+
 }
+
+
 
 .scroll {
   width: 100px;
 }
 
-.add {
-  font-size: 5rem;
-  &:hover {
-    cursor : pointer;
-  }
-}
+
 
 .App-header {
   background-color: $dark-green;
@@ -40,6 +95,18 @@ $grey : #e6e6e6;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  p {
+    font-size: 1.5rem;
+    padding: 0 100px;
+    line-height: 1.5;
+  }
+
+  small {
+    font-size: 1rem;
+    margin: 10px;
+  }
+
 }
 
 .App-footer {

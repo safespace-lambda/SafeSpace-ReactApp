@@ -181,14 +181,17 @@ class SafeSpace extends React.Component {
         return (
             <div className='safespace'>
                 <header>
-                    <Link to={'/login'}><button>Logout</button></Link>
+                    <div className='btns-safespace'>
+                        <Link to={'/login'}><button>Logout</button></Link>
+                        <button onClick={this.add}> Add Message </button>
+                    </div>
                 </header>
-                <p>Welcome!  This is your SafeSpace.</p>
-               {this.state.messages.map( (message,i) => <Message key={i} className='message' 
-               message={message} delete={this.delete} modify={this.modify}/>)}
-                <div className='add' onClick={this.add}> + </div>
-                { this.state.add && <AddMessage add={this.addMessage}/>}
-
+                <div class='messages'>
+                    {this.state.messages.map( (message,i) => <Message key={i} className='message' 
+                message={message} delete={this.delete} modify={this.modify}/>)}
+                    
+                    { this.state.add && <AddMessage add={this.addMessage}/>}
+                </div> 
             </div>
         )
     }

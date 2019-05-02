@@ -27,6 +27,7 @@ class Message extends React.Component {
         <p>{this.props.message.body}</p>
         <button onClick={this.toggleMod}>Modify</button>
         <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
+        
         {this.state.modFlag && <ModifyMessage message={this.props.message} modify={this.props.modify} toggleMod={this.toggleMod} />}
       </div>
     )
