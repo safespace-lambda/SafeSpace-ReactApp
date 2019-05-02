@@ -15,10 +15,24 @@ class AddMessage extends React.Component {
         console.log(e.target[1].value, 'time in msgMaker');
         console.dir(e.target);
 
-        const timeInput = e.target[1].value;
-        const pieces = timeInput.split(':');
-        const time = new Date(Date.now(), pieces[0],pieces[1]);
         const phone = e.target[2].value;
+        const targetTime = e.target[1].value;
+        const currentHours = new Date().getHours();
+        const currentMinutes = new Date().getMinutes();
+        const pieces = targetTime.split(':');
+        const targetHours = parseInt(pieces[0],10);
+        const targetMinutes = parseInt(pieces[1],10);
+        const durationHours = targetHours - currentHours;
+        const durationMinutes = targetMinutes - currentMinutes;
+        const duration = durationHours * 60 * 60 * 1000 + durationMinutes * 60 * 1000
+        console.log(currentHours,currentMinutes,targetHours,targetMinutes,'duration: ',duration);
+
+        //get current time. 
+        //targetTime - current time = duration
+        //convert duration into milliseconds.
+
+        const time = new Date(Date.now(), pieces[0],pieces[1]);
+        
 
         // console.log(time, 'time');
         // console.log('pieces', pieces);
@@ -31,6 +45,9 @@ class AddMessage extends React.Component {
             // scheduled : e.target[1].value
             scheduled : time
         }
+
+
+
         this.props.add(message,phone);
     }
 
