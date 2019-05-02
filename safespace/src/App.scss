@@ -1,22 +1,26 @@
+
 $dark-green: #173A3E;
 $sand: #E0BD6B;
 $grey : #e6e6e6;
-
+$iphone-grey: #828489;
 
 .App {
   text-align: center;
 }
 
 button {
-  background-color: $dark-green;
+  background-color: black;
+  border: 1px solid black;
   color: $sand;
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
+    &:hover {
+      cursor: pointer
+    }
 }
 
 .safespace {
-  
   min-height: 100vh;
 
   header {
@@ -58,32 +62,63 @@ button {
     justify-content: center;
     align-items: center;
     border: 5px solid $dark-green;
+
+      .add-msg {
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        padding: 10px;
+        border: 5px solid $sand;
+        border-radius: 5px;
+        background-color: $dark-green; 
+      }
     
     .message {
-      border: 5px solid $sand;
+      // border: 5px solid $sand;
       margin: 10px;
-      padding: 20px;
+      padding: 8px 8px 0 8px;
       flex-basis: 175px;
+      // background-image: url('/assets/scroll.jpg'); 
+      background-image: url('https://newrelic.com/assets/pages/mobility/bg-iphone.png'); 
+      background-size: cover;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      // border-bottom: 5px solid $dark-green;
+      position: relative;
+
+        &:after {
+          position: absolute;
+          left: 5px;
+          content: "";
+          width: 95%;
+          // border-bottom: 1px solid black;
+          
+        }
 
       p {
         margin: 15px;
+        color: $dark-green;
       }
 
-      
+      .msg-btns {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        margin: 0 10px;
+        border-radius: 20px;
+        &:hover {
+          cursor: pointer
+        }
+      } 
     }
-
   }
-
-
 }
-
-
 
 .scroll {
   width: 100px;
 }
-
-
 
 .App-header {
   background-color: $dark-green;
@@ -139,6 +174,12 @@ form {
     background-color: $dark-green;
     color: $sand;
     font-size: 2rem;
+    
+    &:hover {
+      cursor: pointer
+    }
+
+
   }
 
 }

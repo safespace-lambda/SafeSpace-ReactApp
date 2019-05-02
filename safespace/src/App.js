@@ -1,5 +1,7 @@
 import React from 'react';
 import {Route,Redirect,Switch} from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+
 
 import './App.scss';
 
@@ -13,7 +15,7 @@ function App() {
     <div className="App">
         <Route exact path='/' component={Header} />
         <Route path='/login' component={Login} />
-        <Route exact path='/' component={SafeSpace} />
+        <PrivateRoute exact path='/' component={SafeSpace} />
         <Route exact path='/' component={Footer} />
     </div>
   );
