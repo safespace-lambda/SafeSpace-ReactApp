@@ -177,12 +177,16 @@ class SafeSpace extends React.Component {
              .catch( err => console.log('put error ', err))
     }
 
+    logout = () => {
+        localStorage.clear();
+    }
+
     render() {
         return (
             <div className='safespace'>
                 <header>
                     <div className='btns-safespace'>
-                        <Link to={'/login'}><button>Logout</button></Link>
+                        <Link to={'/login'}><button onClick={this.logout}>Logout</button></Link>
                         <button onClick={this.add}> Add Message </button>
                     </div>
                 </header>
