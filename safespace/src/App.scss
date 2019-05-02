@@ -25,7 +25,6 @@ $grey : #e6e6e6;
 
 .add {
   font-size: 5rem;
-
   &:hover {
     cursor : pointer;
   }
@@ -33,6 +32,7 @@ $grey : #e6e6e6;
 
 .App-header {
   background-color: $dark-green;
+  border: 5px solid $sand;
   min-height: 30vh;
   display: flex;
   flex-direction: column;
@@ -51,5 +51,45 @@ $grey : #e6e6e6;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+form {
+  input {
+    width: 20rem;
+    height: 3rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem; 
+  }
+  textarea {
+    width: 20rem;
+  }
+
+  button {
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: $dark-green;
+    color: $sand;
+    font-size: 2rem;
+  }
+
+}
+
+.login {
+  border: 5px solid $sand;
+  margin: 70px auto;
+  width: 500px;
+  height: 300px;
+  padding-top: 70px;
+  background-color: $dark-green;
+
+  h2 {
+    color : $sand;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 20px;  
+  }
+
 }
 

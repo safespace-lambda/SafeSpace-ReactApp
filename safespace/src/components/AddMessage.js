@@ -15,8 +15,8 @@ class AddMessage extends React.Component {
         console.log(e.target[1].value, 'time in msgMaker');
         console.dir(e.target);
 
-        const phone = e.target[2].value;
-        const targetTime = e.target[1].value;
+        const phone = e.target[1].value;
+        const targetTime = e.target[2].value;
         const currentHours = new Date().getHours();
         const currentMinutes = new Date().getMinutes();
         const pieces = targetTime.split(':');
@@ -41,8 +41,8 @@ class AddMessage extends React.Component {
         return (
             <form onSubmit={ (e) => this.msgMaker(e)}>
                 <textarea id='message' rows='10' cols='30' placeholder='Enter Inspirational Message Here'/><br/>
-                <input type='time' name='time' placeholder='time'/>
-                <input type='text' name='phone' />
+                <input type='text' name='phone' placeholder='Phone number without dashes' /> <br/>
+                <input type='time' name='time' placeholder='time'/>  <br/>
                 <button>Submit</button>
             </form>
         )

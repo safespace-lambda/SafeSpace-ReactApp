@@ -5,8 +5,10 @@
 4. in component where we need the data, do axios.get(url, header) .   header = localStorage.getItem('token')
 */
 
+
 import React from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props) {
@@ -55,6 +57,8 @@ class Login extends React.Component {
                  localStorage.setItem('id', res.data.user_id);
                  localStorage.setItem('token', res.data.token);
                  this.props.history.push('/');
+                // return <Redirect to='/'/>
+
              })
              .catch( err => {
                  console.log(err);
@@ -63,7 +67,8 @@ class Login extends React.Component {
 
     render() {
         return (
-            <form>
+            <form className='login'>
+                <h2>Safe Space</h2>
                 <input placeholder='username' type='text' name='username' value={this.state.credentials.username} onChange={this.input} /><br/>
                 <input placeholder='password' type='password' name='password' value={this.state.credentials.password} onChange={this.input} /><br/>
                 <button onClick={this.register}>Register</button>
