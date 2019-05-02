@@ -1,3 +1,6 @@
+$dark-green: #173A3E;
+$sand: #E0BD6B;
+$grey : #e6e6e6;
 
 
 .App {
@@ -5,21 +8,20 @@
 }
 
 .safespace {
-  border: 2rem solid pink;
+  border: 2rem solid $sand;
   padding: 50px;
   min-height: 100vh;
   margin: 2rem;
 }
 
 .message {
-  border: 5px solid pink;
+  border: 5px solid $sand;
   margin: 10px;
 }
 
 .scroll {
   width: 100px;
 }
-
 
 .add {
   font-size: 5rem;
@@ -30,8 +32,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 10vh;
+  background-color: $dark-green;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +43,7 @@
 }
 
 .App-footer {
-  background-color: #282c34;
+  background-color: $dark-green;
   min-height: 10vh;
   display: flex;
   flex-direction: column;

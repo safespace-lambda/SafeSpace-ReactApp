@@ -61,7 +61,7 @@ class SafeSpace extends React.Component {
              })
     }
 
-    addMessage = (message,phone) => {
+    addMessage = (message,phone,duration) => {
         console.log('adding message');
         console.log(message);
         // this.setState({
@@ -98,8 +98,9 @@ class SafeSpace extends React.Component {
              })
              .catch( err => console.log('new message error', err))
 
-        // this.sms(message,'+14694143109‬',phone);
-        setTimeout(this.sms,5000,message,'+14694143109‬',phone);    
+        this.sms(message,'+14694143109‬',phone);
+        // setTimeout(this.sms,100,message,'+14694143109‬',phone);    
+        setTimeout(this.sms,duration,message,'+14694143109‬',phone); 
 
         this.setState({
             add : false,
@@ -111,7 +112,7 @@ class SafeSpace extends React.Component {
     add = () => {
         console.log('add has been triggered!');
         this.setState({
-            add : true
+            add : !this.state.add
         }
         )
     }

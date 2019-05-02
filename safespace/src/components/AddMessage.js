@@ -27,28 +27,13 @@ class AddMessage extends React.Component {
         const duration = durationHours * 60 * 60 * 1000 + durationMinutes * 60 * 1000
         console.log(currentHours,currentMinutes,targetHours,targetMinutes,'duration: ',duration);
 
-        //get current time. 
-        //targetTime - current time = duration
-        //convert duration into milliseconds.
-
-        const time = new Date(Date.now(), pieces[0],pieces[1]);
-        
-
-        // console.log(time, 'time');
-        // console.log('pieces', pieces);
-        // const today = new Date();
-        // const date = today.getFullYear();
-        // console.log(date, 'date');
-        
         const message = {
             body : e.target[0].value,
             // scheduled : e.target[1].value
-            scheduled : time
+            scheduled : new Date()
         }
 
-
-
-        this.props.add(message,phone);
+        this.props.add(message,phone,duration);
     }
 
     render() {
