@@ -7,37 +7,37 @@
 
 require('dotenv').config();
 console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
-
-
+console.log('Your environment variable TWILIO_AUTH_TOKEN has the value: ', process.env.TWILIO_AUTH_TOKEN);
+console.log('Your environment variable TWILIO_NUMBER has the value: ', process.env.TWILIO_NUMBER);
 
 const accountSid = 'AC1919ebb4da82e72c1304676487efebbe';
 const authToken = '73f077db7483785c5c25c41b8e15e148';
 const client = require('twilio')(accountSid, authToken);
 
-client.messages
+const cors = require('cors');
+const express = require('express')
+const app = express()
+app.use(express.json())
+app.use(cors())
+app.post('/sms',(req,res) => {
+  const {body,from,to} = req.body;
+  client.messages
   .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-     from: '+14694143109',
-     to: '+17577449783'
+     body: body,
+     from: from,
+     to: to
    })
-  .then(message => console.log(message.sid));
+  .then(message => {
+    console.log(message.sid);
+    res.json({message : 'message successfully sent'})
+  });
+})
+
+const port = process.env.PORT || 8080;
+app.listen(port,()=>{console.log(`listening on port ${port}`)})
+
+
 /******************************************************* */
 
-cfg.accountSid = process.env.TWILIO_ACCOUNT_SID;
-cfg.authToken = process.env.TWILIO_AUTH_TOKEN;
-cfg.sendingNumber = process.env.TWILIO_NUMBER;
 
-var requiredConfig = [cfg.accountSid, cfg.authToken, cfg.sendingNumber];
-var isConfigured = requiredConfig.every(function(configValue) {
-  return configValue || false;
-});
 
-if (!isConfigured) {
-  var errorMessage =
-    'TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, and TWILIO_NUMBER must be set.';
-
-  throw new Error(errorMessage);
-}
-
-// Export configuration object
-module.exports = cfg;

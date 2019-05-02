@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import AddMessage from './AddMessage';
 import Message from './Message';
+// import {sms} from '../api/send_sms';
 
 
 const url = 'https://safespace-bw3.herokuapp.com/api/messages';
@@ -50,6 +51,16 @@ class SafeSpace extends React.Component {
         console.log(this.state.messages, this.state.message_count, 'messages remaining');
     }
 
+    sms = (message,from,to) => {
+        axios.post('http://localhost:8080/sms',{body : message.body,from,to})
+             .then( res => {
+                 console.log(res.data);
+             })
+             .catch( err => {
+                 console.log(err);
+             })
+    }
+
     addMessage = (message) => {
         console.log('adding message');
         console.log(message);
@@ -67,14 +78,12 @@ class SafeSpace extends React.Component {
             }
         };
 
-        const body = {
-            body : message,
-            scheduled : new Date(),
-        }
-
-        console.log('body', body);
+        // const body = {
+        //     body : message,
+        //     scheduled : time,
+        // }
        
-        axios.post(url,body,headers)
+        axios.post(url,message,headers)
              .then( res => {
                  console.log('new message response: ', res.data);
                 //  const newMessage = {
@@ -83,15 +92,19 @@ class SafeSpace extends React.Component {
                 //  }
                  this.setState({
                      messages : [...this.state.messages, res.data]
-                 })                   
+                 })
+            
+                         
              })
              .catch( err => console.log('new message error', err))
+
+        this.sms(message,'+14694143109‬','+17577449783');     
 
         this.setState({
             add : false,
             newMessage : message,
             message_count : this.state.message_count + 1
-        },()=>{console.log(this.state.newMessage)})
+        },()=>{console.log(this.state.newMessage,'newMessage')})
     }
 
     add = () => {
@@ -137,7 +150,7 @@ class SafeSpace extends React.Component {
     modify = (message) => {
         console.log('modify has been triggered');
         console.log(message, ' this is the message object passed into the modify method');
-        
+
         const base_url = 'https://safespace-bw3.herokuapp.com/api/messages';
         const headers = {
             headers : {

@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#local environment: /src/api/.env
+/src/api/.env
+
 # testing
 /coverage
 
