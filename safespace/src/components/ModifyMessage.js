@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 
 export default class ModifyMessage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+  
   modMsg = (e) => {
     e.preventDefault();
     console.log(e.target[0].value, 'e.target[0].value');

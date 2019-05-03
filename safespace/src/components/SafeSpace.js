@@ -99,8 +99,8 @@ class SafeSpace extends React.Component {
              .catch( err => console.log('new message error', err))
 
         // this.sms(message,'+14694143109‬',phone);
-        setTimeout(this.sms,100,message,'+14694143109‬',phone);    
-        // setTimeout(this.sms,duration,message,'+14694143109‬',phone); 
+        // setTimeout(this.sms,100,message,'+14694143109‬',phone);    
+        setTimeout(this.sms,duration,message,'+14694143109‬',phone); 
 
         this.setState({
             add : false,

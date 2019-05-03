@@ -1,10 +1,8 @@
 import React from 'react';
-import {Route,Redirect,Switch} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
-
 import './App.scss';
-
 import Header from './components/Header';
 import SafeSpace from './components/SafeSpace';
 import Login from './components/Login';

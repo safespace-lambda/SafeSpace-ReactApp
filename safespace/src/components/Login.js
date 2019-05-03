@@ -5,10 +5,8 @@
 4. in component where we need the data, do axios.get(url, header) .   header = localStorage.getItem('token')
 */
 
-
 import React from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props) {
@@ -28,20 +26,16 @@ class Login extends React.Component {
                 ...this.state.credentials,
                 [e.target.name] : e.target.value                
             }
-                
         })
     }
     register = (e) => {
         e.preventDefault();
-    //    const username = e.target[0].value;
-    //    const password = e.target[1].value;
-    //    console.log(this.state.credentials.username, this.state.credentials.password);
-    //    console.log(username,password);
         console.log(this.state.credentials);
        axios.post('https://safespace-bw3.herokuapp.com/api/auth/register',this.state.credentials)
             .then( res => {
-                console.log(res);
+                console.log(res, 'registration post response');
                 localStorage.setItem('token', res.data.token);
+                alert('Congratulations, you are registered.  Now you may login');
             })
             .catch( err => {
                 console.log(err);
@@ -50,15 +44,16 @@ class Login extends React.Component {
 
     login = (e) => {
         e.preventDefault();
-
         axios.post('https://safespace-bw3.herokuapp.com/api/auth/login',this.state.credentials)
              .then( res => {
                  console.log('login post response: ', res);
                  localStorage.setItem('id', res.data.user_id);
                  localStorage.setItem('token', res.data.token);
+                 this.setState({
+                     username : '',
+                     password: ''
+                 })
                  this.props.history.push('/');
-                // return <Redirect to='/'/>
-
              })
              .catch( err => {
                  console.log(err);
