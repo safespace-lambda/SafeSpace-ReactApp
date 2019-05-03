@@ -85,7 +85,7 @@ class Login extends React.Component {
     render() {
         return (
             <form className='login'>
-                <h2>Safe Space</h2>
+                <a href='http://safespace.lambdaschool.me'><h2>Safe Space</h2></a>
                 <input placeholder='username' type='text' name='username' value={this.state.credentials.username} onChange={this.input} /><br/>
                 <input placeholder='password' type='password' name='password' value={this.state.credentials.password} onChange={this.input} /><br/>
                 <button onClick={this.register}>Register</button>
@@ -94,7 +94,6 @@ class Login extends React.Component {
                 {this.state.regError && <p>Error Registering. Please Try Again...</p>}
             </form>
         )
-
     }
 }
 

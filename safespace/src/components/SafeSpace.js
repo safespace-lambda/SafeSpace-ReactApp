@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import AddMessage from './AddMessage';
 import Message from './Message';
+import Mood from './Mood';
+import Quote from './Quote';
+
 // import {sms} from '../api/send_sms';
 
 
@@ -16,8 +19,9 @@ class SafeSpace extends React.Component {
         this.state = {
             message_count : 0,
             messages : [],
-            add : false
-            
+            add : false,
+            depression : false,
+            depressionQuotes : [{body: '"Whoever remains God conscious, God will provide a way out." -Quran'},{body: '"Don’t be sad, God is with us." -Prophet Muhammad'},{body: ' "Noble deeds and hot baths are the best cures for depression."  ― Dodie Smith'},{body: '"There is hope, even when your brain tells you there isnt" -John Green'},{body: '“Healing is not linear.”'},{body: '“Sometimes, life will kick you around, but sooner or later, you realize you’re not just a survivor. You’re a warrior, and you’re stronger than anything life throws your way." -Brooke Davis'},{body: '“And if today all you did was hold yourself together, I’m proud of you.”'},{body: '“Give yourself another day, another chance. You will find your courage eventually. Don’t give up on yourself just yet.”'},{body: '"Let the depression pass, like black clouds you see before a storm"'},{body: '"After the rain, comes out the sun"'}]
         }
     }
 
@@ -53,6 +57,11 @@ class SafeSpace extends React.Component {
     // }
 
     sms = (message,from,to) => {
+        console.log('sms triggered from SendSMS');
+        console.log(message, 'quote');
+        console.log(from,'from');
+        console.log('to',to);
+
         axios.post('http://localhost:8080/sms',{body : message.body,from,to})
              .then( res => {
                  console.log(res.data);
@@ -82,7 +91,7 @@ class SafeSpace extends React.Component {
        
         axios.post(url,message,headers)
              .then( res => {
-                //  console.log('new message response: ', res.data);
+                 console.log('new message response: ', res.data);
                  this.setState({
                      messages : [...this.state.messages, res.data]
                  })
@@ -173,6 +182,13 @@ class SafeSpace extends React.Component {
 
     }
 
+    depression = () => {
+        console.log('you are depressed');
+        this.setState({
+            depression : !this.state.depression
+        })
+    }
+
     render() {
         return (
             <div className='safespace'>
@@ -180,15 +196,17 @@ class SafeSpace extends React.Component {
                     <div className='btns-safespace'>
                         <button onClick={this.add}> Add Message </button>
                         <Link to={'/login'}><button onClick={this.logout}>Logout</button></Link>
-                       
                     </div>
                 </header>
                 <div className='messages'>
                     {this.state.messages.map( (message,i) => <Message key={i} className='message' 
                     message={message} delete={this.delete} modify={this.modify}/>)}
                     
-                    { this.state.add && <AddMessage add={this.addMessage} toggleAdd={this.add}/>}
-                </div> 
+                    {this.state.add && <AddMessage add={this.addMessage} toggleAdd={this.add}/>}
+                    {this.state.depression && this.state.depressionQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
+                </div>
+                {!this.state.message_count && <Mood add={this.addMessage} toggleAdd={this.add} depression={this.depression}/>} 
+                
             </div>
         )
     }

@@ -25,6 +25,27 @@ button {
   min-height: 100vh;
   background-color: $sand;
 
+  .mood {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin: 20px;
+      color: $dark-green;
+      font-size: 3rem;
+    }
+
+    button {
+      background-color: $dark-green;
+      font-size: 2.5rem;
+      color: white;
+      &:hover {
+        color: $sand;
+      }
+    }
+
+  }
+
   header {
     background-color: $sand;
 
@@ -85,26 +106,35 @@ button {
     border: 5px solid $dark-green;
     background-color: $grey;
 
-    .add-msg {
-      position: absolute;
-      top: 20%;
-      left: 30%;
-      margin: 0 auto;
-      padding: 20px;
-      border: 5px solid $sand;
-      border-radius: 5px;
-      background-color: $dark-green; 
-      width: 400px;
-      
-      input, textarea {
-        font-size: 1.4rem;
+
+      .quote {
+        border: 1px solid $sand;
+        padding: 20px;
+        flex-basis: 40%;
       }
 
-      button {
-        background-color: $sand;
-        color: $dark-green;
+
+      .add-msg {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 20px;
+        border: 5px solid $sand;
+        border-radius: 5px;
+        background-color: $dark-green; 
+        width: 400px;
+        
+        input, textarea {
+          font-size: 1.4rem;
+        }
+
+        button {
+          background-color: $sand;
+          color: $dark-green;
+        }
       }
-    }
     
     .message {
       // border: 5px solid $sand;
@@ -239,7 +269,11 @@ form {
     color : white;
     font-size: 3rem;
     font-weight: bolder;
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   p {
@@ -247,6 +281,5 @@ form {
     color: white;
     padding: 10px;
   }
-
 }
 

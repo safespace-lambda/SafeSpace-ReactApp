@@ -22,7 +22,6 @@ class Message extends React.Component {
   render() {
     return (
       <div className='message'>
-        {/* <img className='scroll' src={scroll} alt='message_img'/> */}
         <div className='msg-btns'>
           <button onClick={this.toggleMod}>Modify</button>
           <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
