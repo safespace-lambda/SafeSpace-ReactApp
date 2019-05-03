@@ -39,14 +39,13 @@ class AddMessage extends React.Component {
     render() {
 
         return (
-            <div className='modal'>
                 <form className='add-msg' onSubmit={ (e) => this.msgMaker(e)}>
                     <textarea id='message' rows='10' cols='30' placeholder='Enter Inspirational Message Here'/><br/>
                     <input type='text' name='phone' placeholder='Phone number without dashes' /> <br/>
                     <input type='time' name='time' placeholder='time'/>  <br/>
                     <button>Submit</button>
+                    <button onClick={this.props.toggleAdd}>Close</button>
                 </form>
-            </div>
         )
     }
 }

@@ -16,7 +16,9 @@ class Login extends React.Component {
             credentials : {
                 username: '',
                 password: ''
-            }
+            },
+            loginError : false,
+            regError: false
         }
     }
 
@@ -36,9 +38,17 @@ class Login extends React.Component {
                 console.log(res, 'registration post response');
                 localStorage.setItem('token', res.data.token);
                 alert('Congratulations, you are registered.  Now you may login');
+                this.setState({
+                    regError : false,
+                    loginError : false
+                })
             })
             .catch( err => {
                 console.log(err);
+                this.setState({
+                    regError : true,
+                    loginError : false
+                })
             })
     } 
 
@@ -51,12 +61,18 @@ class Login extends React.Component {
                  localStorage.setItem('token', res.data.token);
                  this.setState({
                      username : '',
-                     password: ''
+                     password: '',
+                     loginError : false,
+                     regError : false
                  })
                  this.props.history.push('/');
              })
              .catch( err => {
                  console.log(err);
+                 this.setState({
+                    loginError : true,
+                    regError : false
+                })
              })
     }
 
@@ -68,6 +84,9 @@ class Login extends React.Component {
                 <input placeholder='password' type='password' name='password' value={this.state.credentials.password} onChange={this.input} /><br/>
                 <button onClick={this.register}>Register</button>
                 <button onClick={this.login}>Login</button>
+                {this.state.loginError && <p>Error Logging In. Please Try Again...</p>}
+                {this.state.regError && <p>Error Registering. Please Try Again...</p>}
+
             </form>
         )
 

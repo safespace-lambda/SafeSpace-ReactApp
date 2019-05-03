@@ -20,6 +20,10 @@ button {
     }
 }
 
+
+  
+   
+
 .safespace {
   min-height: 100vh;
 
@@ -44,6 +48,16 @@ button {
       background-color: $sand;
       margin: 0;
       padding : 0;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        background-color: $dark-green;
+        font-size: 2rem;
+        padding: 10px;
+        color:white;
+      }
+
     }
 
     .add {
@@ -63,15 +77,28 @@ button {
     align-items: center;
     border: 5px solid $dark-green;
 
-      .add-msg {
-        position: absolute;
-        top: 20%;
-        left: 10%;
-        padding: 10px;
-        border: 5px solid $sand;
-        border-radius: 5px;
-        background-color: $dark-green; 
+    .add-msg {
+      position: absolute;
+      top: 20%;
+      left: 30%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 5px solid $sand;
+      border-radius: 5px;
+      background-color: $dark-green; 
+      width: 400px;
+      
+      input, textarea {
+        font-size: 1.4rem;
       }
+
+      button {
+        background-color: $sand;
+        color: $dark-green;
+      }
+
+    }
+      
     
     .message {
       // border: 5px solid $sand;
@@ -97,19 +124,24 @@ button {
 
       p {
         margin: 15px;
+        padding-top: 20px;
         color: $dark-green;
       }
 
       .msg-btns {
         display: flex;
         justify-content: space-between;
+
+
       }
 
       button {
         margin: 0 10px;
         border-radius: 20px;
+        
         &:hover {
-          cursor: pointer
+          cursor: pointer;
+          color: white;
         }
       } 
     }
@@ -169,14 +201,18 @@ form {
 
   button {
     border-radius: 1rem;
+    border: 1px solid white;
     padding: 1rem;
     margin: 1rem;
     background-color: $dark-green;
-    color: $sand;
+    color: white;
     font-size: 2rem;
+    box-shadow: $sand;
     
     &:hover {
-      cursor: pointer
+      cursor: pointer;
+      background-color: $sand;
+      color: $dark-green;
     }
 
 
@@ -193,10 +229,16 @@ form {
   background-color: $dark-green;
 
   h2 {
-    color : $sand;
+    color : white;
     font-size: 3rem;
     font-weight: bolder;
     margin-bottom: 20px;  
+  }
+
+  p {
+    background-color: red;
+    color: white;
+    padding: 10px;
   }
 
 }
