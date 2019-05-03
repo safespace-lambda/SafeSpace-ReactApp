@@ -17,6 +17,7 @@ class SafeSpace extends React.Component {
             message_count : 0,
             messages : [],
             add : false
+            
         }
     }
 
@@ -32,11 +33,11 @@ class SafeSpace extends React.Component {
             }
         };
 
-        console.log("token in componentdidmount: ", localStorage.getItem('token'));
+        // console.log("token in componentdidmount: ", localStorage.getItem('token'));
 
         axios.get(url,headers)
              .then( res => {
-                 console.log( 'get messages in CDM: ', res);
+                //  console.log( 'get messages in CDM: ', res);
                  this.setState({
                      ...this.state,
                      messages : res.data,
@@ -46,10 +47,10 @@ class SafeSpace extends React.Component {
              .catch(err => console.log(err));
     }
 
-    componentDidUpdate(prevState) {
-        console.log(prevState, 'previous state in componentDidUpdate');
-        console.log(this.state.messages, this.state.message_count, 'messages remaining');
-    }
+    // componentDidUpdate(prevState) {
+    //     console.log(prevState, 'previous state in componentDidUpdate');
+    //     console.log(this.state.messages, this.state.message_count, 'messages remaining');
+    // }
 
     sms = (message,from,to) => {
         axios.post('http://localhost:8080/sms',{body : message.body,from,to})
@@ -64,10 +65,6 @@ class SafeSpace extends React.Component {
     addMessage = (message,phone,duration) => {
         console.log('adding message');
         console.log(message);
-        // this.setState({
-        //     newMessage : message,
-        //     message_count : this.state.message_count + 1
-        // })
 
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
@@ -85,22 +82,15 @@ class SafeSpace extends React.Component {
        
         axios.post(url,message,headers)
              .then( res => {
-                 console.log('new message response: ', res.data);
-                //  const newMessage = {
-                //      ...res.data,
-                //      body : this.state.newMessage
-                //  }
+                //  console.log('new message response: ', res.data);
                  this.setState({
                      messages : [...this.state.messages, res.data]
                  })
-            
-                         
+                 this.sms({body:'message will be sent'},'+14694143109‬',phone);
              })
              .catch( err => console.log('new message error', err))
 
-        // this.sms(message,'+14694143109‬',phone);
-        // setTimeout(this.sms,100,message,'+14694143109‬',phone);    
-        setTimeout(this.sms,duration,message,'+14694143109‬',phone); 
+        setTimeout(this.sms, duration, message,'+14694143109‬',phone); 
 
         this.setState({
             add : false,
@@ -173,12 +163,14 @@ class SafeSpace extends React.Component {
                 });
 
                 this.setState({messages : messages});
+                this.sms(message,'+14694143109‬','7577449783');
             })
              .catch( err => console.log('put error ', err))
     }
 
     logout = () => {
         localStorage.clear();
+
     }
 
     render() {
@@ -191,9 +183,9 @@ class SafeSpace extends React.Component {
                        
                     </div>
                 </header>
-                <div class='messages'>
+                <div className='messages'>
                     {this.state.messages.map( (message,i) => <Message key={i} className='message' 
-                message={message} delete={this.delete} modify={this.modify}/>)}
+                    message={message} delete={this.delete} modify={this.modify}/>)}
                     
                     { this.state.add && <AddMessage add={this.addMessage} toggleAdd={this.add}/>}
                 </div> 

@@ -4,8 +4,8 @@ export default class ModifyMessage extends Component {
   
   modMsg = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value, 'e.target[0].value');
-
+    console.log(e.target[2].value, 'e.target[2].value');
+    
     const modMessage = {
         ...this.props.message,  
         body : e.target[0].value,
@@ -13,7 +13,7 @@ export default class ModifyMessage extends Component {
         scheduled : new Date()
     } 
 
-    this.props.modify(modMessage);
+    this.props.modify(modMessage,e.target[2].value);
     this.props.toggleMod();
   }
   

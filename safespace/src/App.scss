@@ -6,6 +6,7 @@ $iphone-grey: #828489;
 
 .App {
   text-align: center;
+  // background-image: url('http://clipart-library.com/data_images/348839.png'); doesn't render why?
 }
 
 button {
@@ -20,12 +21,9 @@ button {
     }
 }
 
-
-  
-   
-
 .safespace {
   min-height: 100vh;
+  background-color: $sand;
 
   header {
     background-color: $sand;
@@ -54,8 +52,17 @@ button {
       button {
         background-color: $dark-green;
         font-size: 2rem;
-        padding: 10px;
-        color:white;
+        padding: 15px;
+        color: white;
+
+        &:hover {
+          color: $sand;
+        }
+
+        &:active {
+        
+        }
+
       }
 
     }
@@ -76,6 +83,7 @@ button {
     justify-content: center;
     align-items: center;
     border: 5px solid $dark-green;
+    background-color: $grey;
 
     .add-msg {
       position: absolute;
@@ -96,9 +104,7 @@ button {
         background-color: $sand;
         color: $dark-green;
       }
-
     }
-      
     
     .message {
       // border: 5px solid $sand;
@@ -132,18 +138,19 @@ button {
         display: flex;
         justify-content: space-between;
 
+        button {
+          margin: 0 10px;
+          border-radius: 20px;
+          color: white;
+          &:hover {
+            cursor: pointer;
+            color: $sand;
+          }
+        } 
 
       }
 
-      button {
-        margin: 0 10px;
-        border-radius: 20px;
-        
-        &:hover {
-          cursor: pointer;
-          color: white;
-        }
-      } 
+      
     }
   }
 }

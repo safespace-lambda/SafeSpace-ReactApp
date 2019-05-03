@@ -39,6 +39,10 @@ class Login extends React.Component {
                 localStorage.setItem('token', res.data.token);
                 alert('Congratulations, you are registered.  Now you may login');
                 this.setState({
+                    credentials : {
+                        username : '',
+                        password : ''
+                    },
                     regError : false,
                     loginError : false
                 })
@@ -60,8 +64,10 @@ class Login extends React.Component {
                  localStorage.setItem('id', res.data.user_id);
                  localStorage.setItem('token', res.data.token);
                  this.setState({
-                     username : '',
-                     password: '',
+                     credentials : {
+                        username : '',
+                        password: ''
+                     },
                      loginError : false,
                      regError : false
                  })
@@ -86,7 +92,6 @@ class Login extends React.Component {
                 <button onClick={this.login}>Login</button>
                 {this.state.loginError && <p>Error Logging In. Please Try Again...</p>}
                 {this.state.regError && <p>Error Registering. Please Try Again...</p>}
-
             </form>
         )
 
