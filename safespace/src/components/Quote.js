@@ -19,7 +19,7 @@ export default class Quote extends Component {
         <div className='quote'>
             <p>{this.props.quote.body}</p>
             <button onClick={this.smsToggle}>Send SMS</button>
-            {this.state.smsFlag && <SendSMS sms={this.props.sms} quote={this.props.quote}/>}
+            {this.state.smsFlag && <SendSMS sms={this.props.sms} quote={this.props.quote} smsToggle={this.smsToggle}/>}
         </div>
     )
   }

@@ -62,7 +62,7 @@ class SafeSpace extends React.Component {
         console.log(from,'from');
         console.log('to',to);
 
-        axios.post('http://localhost:8080/sms',{body : message.body,from,to})
+        axios.post('https://safespace-lambda.herokuapp.com/sms',{body : message.body,from,to})
              .then( res => {
                  console.log(res.data);
              })
@@ -201,12 +201,13 @@ class SafeSpace extends React.Component {
                 <div className='messages'>
                     {this.state.messages.map( (message,i) => <Message key={i} className='message' 
                     message={message} delete={this.delete} modify={this.modify}/>)}
-                    
                     {this.state.add && <AddMessage add={this.addMessage} toggleAdd={this.add}/>}
-                    {this.state.depression && this.state.depressionQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
+
+                    <div className='quotes'>
+                        {this.state.depression && this.state.depressionQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
+                    </div>
                 </div>
                 {!this.state.message_count && <Mood add={this.addMessage} toggleAdd={this.add} depression={this.depression}/>} 
-                
             </div>
         )
     }

@@ -101,18 +101,41 @@ button {
   .messages {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     border: 5px solid $dark-green;
     background-color: $grey;
 
 
+    .quotes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      border : 5px solid $dark-green;
+
       .quote {
         border: 1px solid $sand;
         padding: 20px;
-        flex-basis: 40%;
+        flex-basis: 300px;
+        min-height : 150px;
+        margin: 10px auto;
+        background: url('https://previews.123rf.com/images/alexutemov/alexutemov1510/alexutemov151000062/45855133-quote-bubble-vector-blank-template-quote-bubble-icon-empty-bubble-template-quote-design-quoting-box-.jpg');
+        background-size: 130% 120%;
+        background-position: center;
+        border-radius: 30px;
+
+          p {
+            padding: 40px;
+          }
+
+          button {
+            margin-bottom: 50px;
+          }
+
       }
 
+    }
 
       .add-msg {
         position: absolute;

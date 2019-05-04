@@ -6,12 +6,6 @@
 /* sample sending an SMS */
 
 require('dotenv').config();
-// console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
-// console.log('Your environment variable TWILIO_AUTH_TOKEN has the value: ', process.env.TWILIO_AUTH_TOKEN);
-// console.log('Your environment variable TWILIO_NUMBER has the value: ', process.env.TWILIO_NUMBER);
-
-//const accountSid
-//const authToken
 
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN)  
 
