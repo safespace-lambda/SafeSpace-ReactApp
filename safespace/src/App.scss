@@ -120,7 +120,7 @@ button {
         flex-basis: 30%;
         min-height : 150px;
         margin: 10px auto;
-        background: url('https://previews.123rf.com/images/alexutemov/alexutemov1510/alexutemov151000062/45855133-quote-bubble-vector-blank-template-quote-bubble-icon-empty-bubble-template-quote-design-quoting-box-.jpg');
+        background: url('./assets/quotebubble.jpg');
         background-size: 130% 120%;
         background-position: center;
         border-radius: 30px;
@@ -131,10 +131,13 @@ button {
 
           p {
             padding-top: 30px;
+            font-size: 2rem;
+            margin-bottom: 10px;
           }
 
           button {
             margin-bottom: 50px;
+            font-size: 2rem;
           }
 
       }
