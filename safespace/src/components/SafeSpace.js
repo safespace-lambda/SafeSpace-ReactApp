@@ -21,7 +21,11 @@ class SafeSpace extends React.Component {
             messages : [],
             add : false,
             depression : false,
-            depressionQuotes : [{body: '"Whoever remains God conscious, God will provide a way out." -Quran'},{body: '"Don’t be sad, God is with us." -Prophet Muhammad'},{body: ' "Noble deeds and hot baths are the best cures for depression."  ― Dodie Smith'},{body: '"There is hope, even when your brain tells you there isnt" -John Green'},{body: '“Healing is not linear.”'},{body: '“Sometimes, life will kick you around, but sooner or later, you realize you’re not just a survivor. You’re a warrior, and you’re stronger than anything life throws your way." -Brooke Davis'},{body: '“And if today all you did was hold yourself together, I’m proud of you.”'},{body: '“Give yourself another day, another chance. You will find your courage eventually. Don’t give up on yourself just yet.”'},{body: '"Let the depression pass, like black clouds you see before a storm"'},{body: '"After the rain, comes out the sun"'}]
+            depressionQuotes : [{body: '"Whoever remains God conscious, God will provide a way out." -Quran'},{body: '"Don’t be sad, God is with us." -Prophet Muhammad'},{body: ' "Noble deeds and hot baths are the best cures for depression."  ― Dodie Smith'},{body: '"There is hope, even when your brain tells you there isnt" -John Green'},{body: '“Healing is not linear.”'},{body: '“Sometimes, life will kick you around, but sooner or later, you realize you’re not just a survivor. You’re a warrior, and you’re stronger than anything life throws your way." -Brooke Davis'},{body: '“And if today all you did was hold yourself together, I’m proud of you.”'},{body: '“Give yourself another day, another chance. You will find your courage eventually. Don’t give up on yourself just yet.”'},{body: '"Let the depression pass, like black clouds you see before a storm"'},{body: '"After the rain, comes out the sun"'}],
+            anxiety : false,
+            anxietyQuotes : [{body: '"Whoever remains God conscious, God will provide a way out." -Quran'},{body: '"Don’t be sad, God is with us." -Prophet Muhammad'},{body: ' "Noble deeds and hot baths are the best cures for depression."  ― Dodie Smith'},{body: '"There is hope, even when your brain tells you there isnt" -John Green'},{body: '“Healing is not linear.”'},{body: '“Sometimes, life will kick you around, but sooner or later, you realize you’re not just a survivor. You’re a warrior, and you’re stronger than anything life throws your way." -Brooke Davis'},{body: '“And if today all you did was hold yourself together, I’m proud of you.”'},{body: '“Give yourself another day, another chance. You will find your courage eventually. Don’t give up on yourself just yet.”'},{body: '"Let the depression pass, like black clouds you see before a storm"'},{body: '"After the rain, comes out the sun"'}],
+            anger : false,
+            angerQuotes : [{body: '"Speak when you are angry – and you’ll make the best speech you’ll ever regret." -Laurence J. Peter'},{body: '"Where there is anger, there is always pain underneath." -Eckhart Tolle'},{body: ' "“Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned.."  ― Buddha'},{body: '"Throughout life people will make you mad, disrespect you and treat you bad. Let God deal with the things they do, cause hate in your heart will consume you too." -Will Smith'},{body: '“Do not be angry with people who do not have the capacity to change.” -Anonymous'},{body: '“Anger comes from the devil, the devil was created of fire, and fire is extinguished only by water; so when one of you becomes angry, he should perform wudu (ablution)" -Prophet Muhammad Abu Dawud 41:4766'},{body: '“If one of you is angry while he is standing, let him sit down so his anger will leave him; otherwise, let him lie down.” -Prophet Muhammad, Abu Dawud #4782'},{body: '“Anger is like a ball of fire, but if you swallow it, it is sweeter than honey.” -Ali bin Abi Talib'},{body: '"A strong one is not the one who defeats his opponent by wrestling; but the strong one is he who can control his anger." -Prophet Muhamamd'},{body: '"[The frontrunners in faith are those who] are able to swallow their anger and forgive and forget people. And God loves the gooddoers." -Quran 3:134'}]
         }
     }
 
@@ -189,6 +193,20 @@ class SafeSpace extends React.Component {
         })
     }
 
+    anxiety = () => {
+        console.log('you have anxiety');
+        this.setState({
+            anxiety : !this.state.anxiety
+        })
+    }
+
+    anger = () => {
+        console.log('you have anger');
+        this.setState({
+            anger : !this.state.anger
+        })
+    }
+
     render() {
         return (
             <div className='safespace'>
@@ -205,9 +223,11 @@ class SafeSpace extends React.Component {
 
                     <div className='quotes'>
                         {this.state.depression && this.state.depressionQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
+                        {this.state.anxiety && this.state.anxietyQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
+                        {this.state.anger && this.state.angerQuotes.map( (quote,i) => <Quote key={i} className='message' quote={quote} sms={this.sms}/>)}
                     </div>
                 </div>
-                {!this.state.message_count && <Mood add={this.addMessage} toggleAdd={this.add} depression={this.depression}/>} 
+                {!this.state.message_count && <Mood add={this.addMessage} toggleAdd={this.add} depression={this.depression} anxiety={this.anxiety} anger={this.anger}/>} 
             </div>
         )
     }
