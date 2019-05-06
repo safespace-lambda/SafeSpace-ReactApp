@@ -16,6 +16,7 @@ button {
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
+  transition: all .3s ease-in-out;
     &:hover {
       cursor: pointer
     }
@@ -39,6 +40,7 @@ button {
       background-color: $dark-green;
       font-size: 2.5rem;
       color: white;
+      transition: all .3s ease-in-out;
       &:hover {
         color: $sand;
       }
@@ -61,6 +63,7 @@ button {
 
     button {
       display: inline-block;
+      transition: all .3s ease-in-out;
     }
 
     .btns-safespace {
@@ -75,6 +78,7 @@ button {
         font-size: 2rem;
         padding: 15px;
         color: white;
+        transition: all .3s ease-in-out;
 
         &:hover {
           color: $sand;
@@ -138,6 +142,7 @@ button {
           button {
             margin-bottom: 50px;
             font-size: 2rem;
+            transition: all .3s ease-in-out;
           }
 
       }
@@ -163,6 +168,7 @@ button {
         button {
           background-color: $sand;
           color: $dark-green;
+          transition: all .3s ease-in-out;
         }
       }
     
@@ -202,6 +208,7 @@ button {
           margin: 0 10px;
           border-radius: 20px;
           color: white;
+          transition: all .3s ease-in-out;
           &:hover {
             cursor: pointer;
             color: $sand;
@@ -275,6 +282,7 @@ form {
     color: white;
     font-size: 2rem;
     box-shadow: $sand;
+    transition: all .3s ease-in-out;
     
     &:hover {
       cursor: pointer;
