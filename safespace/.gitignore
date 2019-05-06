@@ -5,9 +5,11 @@
 /.pnp
 .pnp.js
 
+
 #local environment: /src/api/.env
 /src/api/.env
 /src/api/node_modules
+/src/"api copy"/node_modules
 
 # testing
 /coverage
