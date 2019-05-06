@@ -7,6 +7,8 @@
 
 
 #local environment: /src/api/.env
+/src/api/
+/src/"api copy"/
 /src/api/.env
 /src/api/node_modules
 /src/"api copy"/node_modules
