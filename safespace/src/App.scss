@@ -1,47 +1,257 @@
 
+$dark-green: #173A3E;
+$sand: #E0BD6B;
+$grey : #e6e6e6;
+$iphone-grey: #828489;
 
 .App {
   text-align: center;
+  // background-image: url('http://clipart-library.com/data_images/348839.png'); doesn't render why?
+}
+
+button {
+  background-color: black;
+  border: 1px solid black;
+  color: $sand;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  transition: all .3s ease-in-out;
+    &:hover {
+      cursor: pointer
+    }
 }
 
 .safespace {
-  border: 2rem solid pink;
-  padding: 50px;
   min-height: 100vh;
-  margin: 2rem;
-}
+  background-color: $sand;
 
-.message {
-  border: 5px solid pink;
-  margin: 10px;
+  .mood {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin: 20px;
+      color: $dark-green;
+      font-size: 3rem;
+    }
+
+    button {
+      background-color: $dark-green;
+      font-size: 2.5rem;
+      color: white;
+      transition: all .3s ease-in-out;
+      &:hover {
+        color: $sand;
+      }
+    }
+
+  }
+
+  header {
+    background-color: $sand;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    small {
+      font-size: .5rem;
+      text-align: right;
+    }
+
+    button {
+      display: inline-block;
+      transition: all .3s ease-in-out;
+    }
+
+    .btns-safespace {
+      background-color: $sand;
+      margin: 0;
+      padding : 0;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        background-color: $dark-green;
+        font-size: 2rem;
+        padding: 15px;
+        color: white;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+          color: $sand;
+        }
+
+        &:active {
+        
+        }
+
+      }
+
+    }
+
+    .add {
+      display: inline-block;
+      font-size: 5rem;
+      &:hover {
+        cursor : pointer;
+      }
+    }
+
+  }
+  
+  .messages {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid $dark-green;
+    background-color: $grey;
+
+
+    .quotes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      border : 5px solid $dark-green;
+
+      .quote {
+        border: 1px solid $sand;
+        padding: 70px;
+        flex-basis: 30%;
+        min-height : 150px;
+        margin: 10px auto;
+        background: url('./assets/quotebubble.jpg');
+        background-size: 130% 120%;
+        background-position: center;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+          p {
+            padding-top: 30px;
+            font-size: 2rem;
+            margin-bottom: 10px;
+          }
+
+          button {
+            margin-bottom: 50px;
+            font-size: 2rem;
+            transition: all .3s ease-in-out;
+          }
+
+      }
+
+    }
+
+      .add-msg {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 20px;
+        border: 5px solid $sand;
+        border-radius: 5px;
+        background-color: $dark-green; 
+        width: 400px;
+        
+        input, textarea {
+          font-size: 1.4rem;
+        }
+
+        button {
+          background-color: $sand;
+          color: $dark-green;
+          transition: all .3s ease-in-out;
+        }
+      }
+    
+    .message {
+      // border: 5px solid $sand;
+      margin: 10px;
+      padding: 8px 8px 0 8px;
+      flex-basis: 175px;
+      // background-image: url('/assets/scroll.jpg'); 
+      background-image: url('./assets/iphone.png'); 
+      background-size: cover;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      // border-bottom: 5px solid $dark-green;
+      position: relative;
+
+        &:after {
+          position: absolute;
+          left: 5px;
+          content: "";
+          width: 95%;
+          // border-bottom: 1px solid black;
+          
+        }
+
+      p {
+        margin: 15px;
+        padding-top: 20px;
+        color: $dark-green;
+      }
+
+      .msg-btns {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          margin: 0 10px;
+          border-radius: 20px;
+          color: white;
+          transition: all .3s ease-in-out;
+          &:hover {
+            cursor: pointer;
+            color: $sand;
+          }
+        } 
+
+      }
+
+      
+    }
+  }
 }
 
 .scroll {
   width: 100px;
 }
 
-
-.add {
-  font-size: 5rem;
-
-  &:hover {
-    cursor : pointer;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 10vh;
+  background-color: $dark-green;
+  border: 5px solid $sand;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  p {
+    font-size: 1.5rem;
+    padding: 0 100px;
+    line-height: 1.5;
+  }
+
+  small {
+    font-size: 1rem;
+    margin: 10px;
+  }
+
 }
 
 .App-footer {
-  background-color: #282c34;
+  background-color: $dark-green;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -49,5 +259,65 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+form {
+  input {
+    width: 20rem;
+    height: 3rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem; 
+  }
+  textarea {
+    width: 20rem;
+  }
+
+  button {
+    border-radius: 1rem;
+    border: 1px solid white;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: $dark-green;
+    color: white;
+    font-size: 2rem;
+    box-shadow: $sand;
+    transition: all .3s ease-in-out;
+    
+    &:hover {
+      cursor: pointer;
+      background-color: $sand;
+      color: $dark-green;
+    }
+
+
+  }
+
+}
+
+.login {
+  border: 5px solid $sand;
+  margin: 70px auto;
+  width: 500px;
+  height: 300px;
+  padding-top: 70px;
+  background-color: $dark-green;
+
+  h2 {
+    color : white;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    background-color: red;
+    color: white;
+    padding: 10px;
+  }
 }
 

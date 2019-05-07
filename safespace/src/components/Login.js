@@ -16,7 +16,9 @@ class Login extends React.Component {
             credentials : {
                 username: '',
                 password: ''
-            }
+            },
+            loginError : false,
+            regError: false
         }
     }
 
@@ -26,51 +28,72 @@ class Login extends React.Component {
                 ...this.state.credentials,
                 [e.target.name] : e.target.value                
             }
-                
         })
     }
     register = (e) => {
         e.preventDefault();
-    //    const username = e.target[0].value;
-    //    const password = e.target[1].value;
-    //    console.log(this.state.credentials.username, this.state.credentials.password);
-    //    console.log(username,password);
         console.log(this.state.credentials);
        axios.post('https://safespace-bw3.herokuapp.com/api/auth/register',this.state.credentials)
             .then( res => {
-                console.log(res);
+                console.log(res, 'registration post response');
                 localStorage.setItem('token', res.data.token);
+                alert('Congratulations, you are registered.  Now you may login');
+                this.setState({
+                    credentials : {
+                        username : '',
+                        password : ''
+                    },
+                    regError : false,
+                    loginError : false
+                })
             })
             .catch( err => {
                 console.log(err);
+                this.setState({
+                    regError : true,
+                    loginError : false
+                })
             })
     } 
 
     login = (e) => {
         e.preventDefault();
-
         axios.post('https://safespace-bw3.herokuapp.com/api/auth/login',this.state.credentials)
              .then( res => {
                  console.log('login post response: ', res);
                  localStorage.setItem('id', res.data.user_id);
                  localStorage.setItem('token', res.data.token);
+                 this.setState({
+                     credentials : {
+                        username : '',
+                        password: ''
+                     },
+                     loginError : false,
+                     regError : false
+                 })
                  this.props.history.push('/');
              })
              .catch( err => {
                  console.log(err);
+                 this.setState({
+                    loginError : true,
+                    regError : false
+                })
              })
     }
 
     render() {
         return (
-            <form>
+            <form className='login'>
+                <a href='http://safespace.lambdaschool.me'><h2>Safe Space</h2></a>
                 <input placeholder='username' type='text' name='username' value={this.state.credentials.username} onChange={this.input} /><br/>
                 <input placeholder='password' type='password' name='password' value={this.state.credentials.password} onChange={this.input} /><br/>
                 <button onClick={this.register}>Register</button>
                 <button onClick={this.login}>Login</button>
+                {this.state.loginError && <p>Error Logging In. Please Try Again...</p>}
+                {this.state.regError && <p>Error Registering. Please Try Again...</p>}
             </form>
         )
-
     }
 }
 

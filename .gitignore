@@ -7,11 +7,14 @@
 
 
 #local environment: /src/api/.env
-/src/api/
-/src/"api copy"/
-/src/api/.env
-/src/api/node_modules
-/src/"api copy"/node_modules
+*/node_modules/
+/node_modules/
+**/*/node_modules
+/safespace/src/api/
+/safespace/src/"api copy"/
+/safespace/src/api/.env
+/safespace/src/api/node_modules
+/safespace/src/"api copy"/node_modules
 
 # testing
 /coverage

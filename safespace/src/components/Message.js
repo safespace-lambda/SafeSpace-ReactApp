@@ -1,5 +1,4 @@
 import React from 'react'
-import scroll from '../assets/scroll.jpg';
 import ModifyMessage from './ModifyMessage';
 
 class Message extends React.Component {
@@ -19,14 +18,17 @@ class Message extends React.Component {
         modFlag : !this.state.modFlag
     })
   }
-//this.props.modify(modifiedMessage);
+  
   render() {
     return (
       <div className='message'>
-        <img className='scroll' src={scroll} alt='message_img'/>
+        <div className='msg-btns'>
+          <button onClick={this.toggleMod}>Modify</button>
+          <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
+        </div>
+        
         <p>{this.props.message.body}</p>
-        <button onClick={this.toggleMod}>Modify</button>
-        <button onClick={() => this.props.delete(this.props.message)}>Delete</button>
+        
         {this.state.modFlag && <ModifyMessage message={this.props.message} modify={this.props.modify} toggleMod={this.toggleMod} />}
       </div>
     )
